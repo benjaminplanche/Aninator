@@ -1,0 +1,399 @@
+:- dynamic animal/1.
+
+animal(dauphin).
+animal(rat).
+animal(chien).
+animal(chat).
+animal(serpent).
+animal(vache).
+animal(lapin).
+animal(lion).
+animal(aigle).
+animal('éléphant').
+
+:- dynamic categorie/2.
+
+categorie(courir, 'capacité').
+categorie(carnivore, 'régime').
+categorie(nager, 'capacité').
+categorie(mammifere, famille).
+categorie(reptile, famille).
+categorie('rongeur d os', 'régime').
+categorie('avec fromage', 'régime').
+categorie(herbivore, 'régime').
+categorie(bondir, 'capacité').
+categorie(moustache, physique).
+categorie('quatre pattes', physique).
+categorie('animal de compagnie', 'rapport à l homme').
+categorie(communautaire, comportement).
+categorie(dressable, comportement).
+categorie(courir, 'capacité').
+categorie(carnivore, 'régime').
+categorie(dangereux, 'rapport à l homme').
+categorie(voler, 'capacité').
+categorie(trompe, physique).
+categorie(oiseau, famille).
+
+:- dynamic attributsIncompatibles/4.
+
+attributsIncompatibles(carnivore, n, courir, n).
+attributsIncompatibles(courir, o, nager, o).
+attributsIncompatibles(nager, o, courir, o).
+attributsIncompatibles(mammifere, n, courir, n).
+attributsIncompatibles(courir, o, reptile, n).
+attributsIncompatibles(courir, n, reptile, n).
+attributsIncompatibles(reptile, o, courir, n).
+attributsIncompatibles(courir, n, 'rongeur d os', n).
+attributsIncompatibles(courir, o, 'avec fromage', n).
+attributsIncompatibles(courir, n, 'avec fromage', n).
+attributsIncompatibles('avec fromage', o, courir, n).
+attributsIncompatibles(courir, o, herbivore, n).
+attributsIncompatibles(courir, n, herbivore, o).
+attributsIncompatibles(herbivore, o, courir, o).
+
+:- dynamic attributsImpliques/3.
+
+attributsImpliques('avec fromage', mammifere, o).
+attributsImpliques(courir, carnivore, n).
+attributsImpliques(courir, mammifere, n).
+attributsImpliques(reptile, courir, n).
+attributsImpliques('rongeur d os', courir, n).
+attributsImpliques('avec fromage', courir, n).
+
+:- dynamic attribut/4.
+
+attribut(nager, o, 4, dauphin).
+attribut(nager, n, 1, chien).
+attribut(carnivore, o, 10, dauphin).
+attribut(nager, o, 4, dauphin).
+attribut(mammifere, n, 13, serpent).
+attribut(bondir, n, 5, dauphin).
+attribut(dressable, o, 0, lapin).
+attribut(dressable, n, 5, lapin).
+attribut(dressable, p, 0, lapin).
+attribut(dressable, o, 3, serpent).
+attribut(dressable, n, 0, serpent).
+attribut(dressable, p, 2, serpent).
+attribut(dressable, o, 3, chat).
+attribut(dressable, n, 2, chat).
+attribut(dressable, p, 1, chat).
+attribut(dressable, o, 0, rat).
+attribut(dressable, n, 3, rat).
+attribut(dressable, p, 1, rat).
+attribut(dressable, o, 4, dauphin).
+attribut(dressable, n, 0, dauphin).
+attribut(dressable, p, 2, dauphin).
+attribut(nager, o, 0, lapin).
+attribut(nager, n, 4, lapin).
+attribut(nager, p, 0, lapin).
+attribut(nager, o, 1, vache).
+attribut(nager, n, 10, vache).
+attribut(nager, p, 0, vache).
+attribut(nager, o, 0, serpent).
+attribut(nager, n, 10, serpent).
+attribut(nager, p, 0, serpent).
+attribut(nager, o, 0, chat).
+attribut(nager, p, 0, chat).
+attribut(nager, p, 0, chien).
+attribut(nager, o, 0, rat).
+attribut(nager, n, 4, rat).
+attribut(nager, p, 0, rat).
+attribut(nager, n, 0, dauphin).
+attribut(nager, p, 0, dauphin).
+attribut(mammifere, o, 4, rat).
+attribut(mammifere, n, 0, rat).
+attribut(mammifere, p, 0, rat).
+attribut(mammifere, n, 0, chien).
+attribut(mammifere, p, 0, chien).
+attribut(mammifere, n, 0, chat).
+attribut(mammifere, p, 0, chat).
+attribut(mammifere, o, 4, vache).
+attribut(mammifere, n, 0, vache).
+attribut(mammifere, p, 0, vache).
+attribut(mammifere, o, 4, lapin).
+attribut(mammifere, p, 0, lapin).
+attribut(mammifere, n, 0, lapin).
+attribut('quatre pattes', o, 4, rat).
+attribut('quatre pattes', n, 0, rat).
+attribut('quatre pattes', p, 0, rat).
+attribut('quatre pattes', n, 0, chien).
+attribut('quatre pattes', o, 10, chien).
+attribut('quatre pattes', p, 0, chien).
+attribut('quatre pattes', o, 4, chat).
+attribut('quatre pattes', n, 0, chat).
+attribut('quatre pattes', p, 0, chat).
+attribut('quatre pattes', o, 4, vache).
+attribut('quatre pattes', n, 0, vache).
+attribut('quatre pattes', p, 0, vache).
+attribut('quatre pattes', o, 4, lapin).
+attribut('quatre pattes', n, 0, lapin).
+attribut('quatre pattes', p, 0, lapin).
+attribut('rongeur d os', n, 0, chien).
+attribut('rongeur d os', p, 0, chien).
+attribut('avec fromage', o, 4, rat).
+attribut('avec fromage', n, 0, rat).
+attribut('avec fromage', p, 0, rat).
+attribut(herbivore, o, 4, lapin).
+attribut(herbivore, n, 0, lapin).
+attribut(herbivore, p, 0, lapin).
+attribut(herbivore, o, 4, vache).
+attribut(herbivore, n, 0, vache).
+attribut(herbivore, p, 0, vache).
+attribut(bondir, o, 4, lapin).
+attribut(bondir, n, 0, lapin).
+attribut(bondir, p, 0, lapin).
+attribut(bondir, n, 0, chat).
+attribut(bondir, p, 0, chat).
+attribut(bondir, o, 4, chien).
+attribut(bondir, p, 0, chien).
+attribut(bondir, o, 4, rat).
+attribut(bondir, n, 0, rat).
+attribut(bondir, p, 0, rat).
+attribut(bondir, o, 0, vache).
+attribut(bondir, n, 3, vache).
+attribut(bondir, p, 0, vache).
+attribut(moustache, o, 4, lapin).
+attribut(moustache, n, 0, lapin).
+attribut(moustache, p, 0, lapin).
+attribut(moustache, o, 4, rat).
+attribut(moustache, n, 0, rat).
+attribut(moustache, p, 0, rat).
+attribut(moustache, n, 0, chat).
+attribut(moustache, p, 0, chat).
+attribut(moustache, o, 4, chien).
+attribut(moustache, n, 2, chien).
+attribut(moustache, p, 0, chien).
+attribut('animal de compagnie', n, 0, chien).
+attribut('animal de compagnie', p, 0, chien).
+attribut('animal de compagnie', o, 4, chat).
+attribut('animal de compagnie', n, 0, chat).
+attribut('animal de compagnie', p, 0, chat).
+attribut('animal de compagnie', n, 10, dauphin).
+attribut(communautaire, o, 4, rat).
+attribut(communautaire, n, 0, rat).
+attribut(communautaire, p, 0, rat).
+attribut(communautaire, o, 4, lapin).
+attribut(communautaire, n, 0, lapin).
+attribut(communautaire, p, 0, lapin).
+attribut(communautaire, o, 4, vache).
+attribut(communautaire, n, 0, vache).
+attribut(communautaire, p, 0, vache).
+attribut(communautaire, n, 10, serpent).
+attribut(communautaire, n, 10, chat).
+attribut(mammifere, o, 0, serpent).
+attribut(mammifere, p, 4, serpent).
+attribut('rongeur d os', o, 0, lapin).
+attribut('rongeur d os', n, 6, lapin).
+attribut('rongeur d os', p, 4, lapin).
+attribut('avec fromage', o, 0, lapin).
+attribut('avec fromage', n, 0, lapin).
+attribut('avec fromage', p, 4, lapin).
+attribut('animal de compagnie', o, 0, lapin).
+attribut('animal de compagnie', n, 0, lapin).
+attribut('animal de compagnie', p, 4, lapin).
+attribut('rongeur d os', o, 0, vache).
+attribut('rongeur d os', n, 5, vache).
+attribut('rongeur d os', p, 0, vache).
+attribut('avec fromage', o, 0, vache).
+attribut('avec fromage', n, 7, vache).
+attribut('avec fromage', p, 4, vache).
+attribut('avec fromage', n, 4, serpent).
+attribut('avec fromage', n, 4, chien).
+attribut('avec fromage', n, 4, chat).
+attribut(moustache, o, 0, vache).
+attribut(moustache, n, 10, vache).
+attribut(moustache, p, 4, vache).
+attribut('animal de compagnie', o, 0, vache).
+attribut('animal de compagnie', n, 0, vache).
+attribut('animal de compagnie', p, 4, vache).
+attribut('quatre pattes', o, 0, serpent).
+attribut('quatre pattes', n, 0, serpent).
+attribut('quatre pattes', p, 4, serpent).
+attribut('rongeur d os', o, 0, serpent).
+attribut('rongeur d os', n, 6, serpent).
+attribut('rongeur d os', p, 4, serpent).
+attribut('avec fromage', o, 0, serpent).
+attribut('avec fromage', p, 4, serpent).
+attribut(herbivore, o, 0, serpent).
+attribut(herbivore, n, 10, serpent).
+attribut(herbivore, p, 4, serpent).
+attribut(bondir, o, 0, serpent).
+attribut(bondir, n, 0, serpent).
+attribut(bondir, p, 4, serpent).
+attribut(moustache, o, 0, serpent).
+attribut(moustache, n, 5, serpent).
+attribut(moustache, p, 4, serpent).
+attribut('animal de compagnie', o, 0, serpent).
+attribut('animal de compagnie', n, 0, serpent).
+attribut('animal de compagnie', p, 4, serpent).
+attribut(communautaire, o, 0, serpent).
+attribut(communautaire, p, 4, serpent).
+attribut('rongeur d os', o, 0, chat).
+attribut('rongeur d os', n, 5, chat).
+attribut('rongeur d os', p, 0, chat).
+attribut('avec fromage', o, 0, chat).
+attribut('avec fromage', p, 4, chat).
+attribut(herbivore, o, 0, chat).
+attribut(herbivore, n, 6, chat).
+attribut(herbivore, p, 4, chat).
+attribut(communautaire, o, 0, chat).
+attribut(communautaire, p, 4, chat).
+attribut('avec fromage', o, 0, chien).
+attribut('avec fromage', p, 4, chien).
+attribut(herbivore, o, 0, chien).
+attribut(herbivore, n, 6, chien).
+attribut(herbivore, p, 4, chien).
+attribut(communautaire, o, 3, chien).
+attribut(communautaire, n, 0, chien).
+attribut(communautaire, p, 4, chien).
+attribut('rongeur d os', o, 0, rat).
+attribut('rongeur d os', n, 0, rat).
+attribut('rongeur d os', p, 4, rat).
+attribut(herbivore, o, 0, rat).
+attribut(herbivore, n, 7, rat).
+attribut(herbivore, p, 4, rat).
+attribut('animal de compagnie', o, 3, rat).
+attribut('animal de compagnie', n, 0, rat).
+attribut('animal de compagnie', p, 4, rat).
+attribut(reptile, o, 10, serpent).
+attribut(reptile, n, 3, serpent).
+attribut(reptile, p, 4, serpent).
+attribut(reptile, o, 2, rat).
+attribut(reptile, p, 2, rat).
+attribut(reptile, n, 5, rat).
+attribut(reptile, o, 0, lapin).
+attribut(reptile, n, 4, lapin).
+attribut(reptile, p, 2, lapin).
+attribut(reptile, o, 0, vache).
+attribut(reptile, n, 3, vache).
+attribut(reptile, p, 2, vache).
+attribut(reptile, o, 0, chat).
+attribut(reptile, n, 6, chat).
+attribut(reptile, p, 2, chat).
+attribut(reptile, o, 0, chien).
+attribut(reptile, n, 5, chien).
+attribut(reptile, p, 2, chien).
+attribut(reptile, o, 0, dauphin).
+attribut(reptile, n, 10, dauphin).
+attribut(reptile, p, 2, dauphin).
+attribut(mammifere, n, 0, dauphin).
+attribut(mammifere, p, 2, dauphin).
+attribut('quatre pattes', o, 0, dauphin).
+attribut('quatre pattes', p, 2, dauphin).
+attribut('rongeur d os', o, 0, dauphin).
+attribut('rongeur d os', n, 5, dauphin).
+attribut('rongeur d os', p, 2, dauphin).
+attribut('avec fromage', o, 0, dauphin).
+attribut('avec fromage', n, 5, dauphin).
+attribut('avec fromage', p, 2, dauphin).
+attribut(herbivore, o, 0, dauphin).
+attribut(herbivore, p, 2, dauphin).
+attribut(bondir, p, 2, dauphin).
+attribut(moustache, o, 0, dauphin).
+attribut(moustache, n, 6, dauphin).
+attribut(moustache, p, 2, dauphin).
+attribut('animal de compagnie', o, 0, dauphin).
+attribut('animal de compagnie', p, 2, dauphin).
+attribut(communautaire, o, 10, dauphin).
+attribut(communautaire, n, 0, dauphin).
+attribut(communautaire, p, 2, dauphin).
+attribut(dressable, n, 0, chien).
+attribut(dressable, p, 0, chien).
+attribut('quatre pattes', o, 5, chien).
+attribut(bondir, n, 1, chien).
+attribut(dressable, o, 0, vache).
+attribut(dressable, p, 0, vache).
+attribut(dressable, n, 5, vache).
+attribut(bondir, n, 1, dauphin).
+attribut(mammifere, o, 10, dauphin).
+attribut(mammifere, n, 10, serpent).
+attribut(courir, n, 10, dauphin).
+attribut(carnivore, o, 10, dauphin).
+attribut('quatre pattes', n, 40, dauphin).
+attribut(bondir, o, 10, dauphin).
+attribut(dangereux, o, 1, lion).
+attribut(dressable, o, 1, lion).
+attribut('quatre pattes', o, 1, lion).
+attribut(bondir, o, 1, lion).
+attribut('rongeur d os', o, 1, lion).
+attribut('avec fromage', n, 1, lion).
+attribut(carnivore, o, 1, lion).
+attribut(herbivore, n, 1, lion).
+attribut(moustache, o, 2, lion).
+attribut('animal de compagnie', n, 3, lion).
+attribut(communautaire, o, 1, lion).
+attribut(reptile, n, 1, lion).
+attribut(mammifere, o, 1, lion).
+attribut(nager, n, 2, lion).
+attribut(courir, n, 12, dauphin).
+attribut('rongeur d os', o, 5, chien).
+attribut(mammifere, o, 5, chien).
+attribut('animal de compagnie', o, 5, chien).
+attribut(dressable, o, 11, chien).
+attribut(trompe, o, 1, 'éléphant').
+attribut(nager, n, 1, 'éléphant').
+attribut(bondir, n, 1, 'éléphant').
+attribut(moustache, n, 1, 'éléphant').
+attribut(carnivore, p, 1, 'éléphant').
+attribut(mammifere, o, 1, 'éléphant').
+attribut(courir, p, 1, 'éléphant').
+attribut(trompe, n, 1, vache).
+attribut(oiseau, o, 1, aigle).
+attribut(oiseau, p, 1, aigle).
+attribut(bondir, n, 2, aigle).
+attribut(dressable, o, 4, aigle).
+attribut('quatre pattes', n, 3, aigle).
+attribut(herbivore, n, 2, aigle).
+attribut(moustache, n, 3, aigle).
+attribut('animal de compagnie', n, 5, aigle).
+attribut('avec fromage', n, 1, aigle).
+attribut(communautaire, n, 3, aigle).
+attribut(nager, n, 2, aigle).
+attribut(reptile, n, 2, aigle).
+attribut(mammifere, n, 3, aigle).
+attribut(voler, n, 2, serpent).
+attribut(voler, o, 3, aigle).
+attribut(herbivore, n, 6, dauphin).
+attribut(courir, n, 1, vache).
+attribut(courir, n, 1, lapin).
+attribut(courir, o, 13, chat).
+attribut(nager, n, 12, chat).
+attribut(bondir, o, 5, chat).
+attribut(moustache, o, 5, chat).
+attribut(trompe, n, 1, chat).
+attribut(mammifere, o, 5, chat).
+attribut(courir, o, 1, rat).
+attribut(courir, o, 1, chien).
+attribut(courir, o, 11, chat).
+attribut(courir, o, 1, lapin).
+attribut(courir, o, 2, lion).
+
+formulationQuestion(famille, 'Appartient-il à la famille ').
+formulationQuestion('régime', 'A-t-il un régime ').
+formulationQuestion(physique, 'Possède-t-il ').
+formulationQuestion('capacité', 'Est-il capable de ').
+formulationQuestion('rapport à l homme', 'Pour l Homme, il est vu comme ').
+formulationQuestion(comportement, 'A-t-il un comportement ').
+
+formulationAffirmation(famille, '').
+formulationAffirmation('régime', 'ayant un régime ').
+formulationAffirmation(physique, 'possédant ').
+formulationAffirmation('capacité', 'capable de ').
+formulationAffirmation('rapport à l homme', 'vu par l Homme comme ').
+formulationAffirmation(comportement, 'ayant un comportement ').
+
+formulationNegation(famille, 'non-').
+formulationNegation('régime', 'n ayant pas un régime ').
+formulationNegation(physique, 'ne possédant pas ').
+formulationNegation('capacité', 'incapable de ').
+formulationNegation('rapport à l homme', 'non-vu par l Homme comme ').
+formulationNegation(comportement, 'n ayant pas un comportement ').
+
+formulationInfinitive(famille, 'être ').
+formulationInfinitive('régime', 'avoir un régime ').
+formulationInfinitive(physique, 'posséder ').
+formulationInfinitive('capacité', 'être capable de ').
+formulationInfinitive('rapport à l homme', 'être vu par l Homme comme ').
+formulationInfinitive(comportement, 'avoir un comportement ').
+
+
